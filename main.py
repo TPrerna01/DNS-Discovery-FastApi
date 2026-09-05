@@ -30,8 +30,6 @@ def create_app():
         logger.info(f"{request.method} {request.url.path} -> {response.status_code} ({duration_ms:.1f}ms)")
         return response
 
-    # our schemas raise ValueError from model_validator for bad input (invalid FQDN, weak password, etc.) -
-    # FastAPI reports these as 422 by default, but the spec wants 400 for validation failures
     @app.exception_handler(RequestValidationError)
     async def validation_exception_handler(request: Request, exc: RequestValidationError):
         logger.warning(f"Validation failed for {request.method} {request.url.path}: {exc.errors()}")

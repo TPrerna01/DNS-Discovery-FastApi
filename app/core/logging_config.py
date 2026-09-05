@@ -4,7 +4,7 @@ from pathlib import Path
 
 LOG_DIR = os.path.join(Path(__file__).resolve().parent.parent.parent, "logs")
 
-# how many days of rotated log files to keep before old ones get deleted automatically
+# Schedule delete days
 LOG_RETENTION_DAYS = 30
 
 
